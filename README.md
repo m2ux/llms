@@ -103,7 +103,7 @@ uvx --from mcpdoc mcpdoc --help
         "mcpdoc",
         "mcpdoc",
         "--urls",
-        "Rust:file:///home/mike/projects/dev/llms/rust-llms.txt",
+        "Rust:https://github.com/m2ux/llms/blob/main/rust-llms.txt",
         "--transport",
         "stdio"
       ]
@@ -154,7 +154,7 @@ for ANY question about Rust, use the rust-docs-mcp server to help answer --
 Run this command to add the MCP server:
 
 ```bash
-claude mcp add-json rust-docs '{"type":"stdio","command":"uvx","args":["--from", "mcpdoc", "mcpdoc", "--urls", "Rust:file:///home/mike/projects/dev/llms/rust-llms.txt"]}' -s local
+claude mcp add-json rust-docs '{"type":"stdio","command":"uvx","args":["--from", "mcpdoc", "mcpdoc", "--urls", "Rust:https://github.com/m2ux/llms/blob/main/rust-llms.txt"]}' -s local
 ```
 
 #### Command Line Usage
