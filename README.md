@@ -164,7 +164,7 @@ You can also run the server directly from the command line:
 ```bash
 # Serve the rust-llms.txt file
 uvx --from mcpdoc mcpdoc \
-    --urls "Rust:file:///home/mike/projects/dev/llms/rust-llms.txt" \
+    --urls "Rust:https://github.com/m2ux/llms/blob/main/rust-llms.txt" \
     --transport sse \
     --port 8082 \
     --host localhost
