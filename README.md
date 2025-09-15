@@ -1,4 +1,4 @@
-# LLM Context
+# LLM Context Files
 
 This project contains structured context files designed to help Large Language Models (LLMs) understand and work with specific programming languages and frameworks.
 
