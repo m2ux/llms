@@ -106,6 +106,8 @@ uvx --from mcpdoc mcpdoc --help
         "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt",
         "--transport",
         "stdio"
+        "--allowed-domains",
+        "*"
       ]
     }
   }
@@ -168,7 +170,7 @@ for ANY question about Rust, use the rust-docs-mcp server to help answer --
 In a terminal after installing Claude Code, run this command to add the MCP server to your project:
 
 ```bash
-claude mcp add-json rust-docs '{"type":"stdio","command":"uvx","args":["--from", "mcpdoc", "mcpdoc", "--urls", "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt"]}' -s local
+claude mcp add-json rust-docs '{"type":"stdio","command":"uvx","args":["--from", "mcpdoc", "mcpdoc", "--urls", "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt", "--allowed-domains", "*"]}' -s local
 ```
 
 Since Claude Code doesn't currently support global rules, append the following to your prompts:
@@ -189,14 +191,7 @@ for ANY question about Rust, use the rust-docs-mcp server to help answer --
 You can also run the server directly from the command line with various options:
 
 ```bash
-# Basic usage - serve the rust-llms.txt file
-uvx --from mcpdoc mcpdoc --urls "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt"
-
-# With additional options
-uvx --from mcpdoc mcpdoc \
-    --urls "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt" \
-    --follow-redirects \
-    --timeout 15
+uvx --from mcpdoc mcpdoc --urls "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt" --transport sse --port 8082 --host localhost --allowed-domains '*'
 ```
 
 **Additional Options:**
