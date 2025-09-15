@@ -85,13 +85,13 @@ Install mcpdoc using uvx (recommended):
 ```bash
 uvx --from mcpdoc mcpdoc --help
 ```
+
 #### IDE Integration
 
 ##### Connect to Cursor
 
-1. Open Cursor Settings and navigate to the `MCP` tab
-2. Edit the configuration file (`~/Library/Application Support/Cursor/User/globalStorage/state.vscdb` on Mac)
-3. Add the rust-llms.txt server configuration:
+* Open Cursor `Settings/MCP` tab.
+* Paste the following configuration into the MCP settings:
 
 ```json
 {
@@ -103,7 +103,7 @@ uvx --from mcpdoc mcpdoc --help
         "mcpdoc",
         "mcpdoc",
         "--urls",
-        "Rust:https://github.com/m2ux/llms/blob/main/rust-llms.txt",
+        "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt",
         "--transport",
         "stdio"
       ]
@@ -112,63 +112,96 @@ uvx --from mcpdoc mcpdoc --help
 }
 ```
 
-4. Update Cursor Global (User) Rules in `Settings/Rules`:
+* Confirm that the server is running in your `Cursor Settings/MCP` tab.
+* Best practice is to then update Cursor Global (User) rules.
+* Open Cursor `Settings/Rules` and update `User Rules` with the following:
 
 ```
-for ANY question about Rust, use the rust-docs-mcp server to help answer --
+for ANY question about Rust, use the rust-docs-mcp server to help answer -- 
 + call list_doc_sources tool to get the available llms.txt file
 + call fetch_docs tool to read it
-+ reflect on the urls in llms.txt
-+ reflect on the input question
++ reflect on the urls in llms.txt 
++ reflect on the input question 
 + call fetch_docs on any urls relevant to the question
 + use this to answer the question
 ```
 
 ##### Connect to Windsurf
 
-1. Open Cascade with `CMD+L` (on Mac)
-2. Click `Configure MCP` to open `~/.codeium/windsurf/mcp_config.json`
-3. Add the same configuration as above for Cursor
-4. Update `Windsurf Rules/Global rules` with similar rules
+* Open Cascade with `CMD+L` (on Mac).
+* Click `Configure MCP` to open the config file, `~/.codeium/windsurf/mcp_config.json`.
+* Update with the same configuration as noted above for Cursor.
+* Update `Windsurf Rules/Global rules` with the following:
+
+```
+for ANY question about Rust, use the rust-docs-mcp server to help answer -- 
++ call list_doc_sources tool to get the available llms.txt file
++ call fetch_docs tool to read it
++ reflect on the urls in llms.txt 
++ reflect on the input question 
++ call fetch_docs on any urls relevant to the question
+```
 
 ##### Connect to Claude Desktop
 
-1. Open `Settings/Developer` to update `~/Library/Application Support/Claude/claude_desktop_config.json`
-2. Add the rust-docs-mcp configuration
-3. Restart Claude Desktop app
-4. Since Claude Desktop doesn't support global rules, append this to your prompts:
+* Open `Settings/Developer` to update `~/Library/Application\ Support/Claude/claude_desktop_config.json`.
+* Add the rust-docs-mcp configuration as noted above.
+* Restart Claude Desktop app.
+
+**Note:** If you run into issues with Python version incompatibility when trying to add MCPDoc tools to Claude Desktop, you can explicitly specify the filepath to `python` executable in the `uvx` command.
+
+Since Claude Desktop doesn't currently support global rules, append the following to your prompts:
 
 ```
 <rules>
-for ANY question about Rust, use the rust-docs-mcp server to help answer --
+for ANY question about Rust, use the rust-docs-mcp server to help answer -- 
 + call list_doc_sources tool to get the available llms.txt file
 + call fetch_docs tool to read it
-+ reflect on the urls in llms.txt
-+ reflect on the input question
++ reflect on the urls in llms.txt 
++ reflect on the input question 
 + call fetch_docs on any urls relevant to the question
 </rules>
 ```
 
 ##### Connect to Claude Code
 
-Run this command to add the MCP server:
+In a terminal after installing Claude Code, run this command to add the MCP server to your project:
 
 ```bash
-claude mcp add-json rust-docs '{"type":"stdio","command":"uvx","args":["--from", "mcpdoc", "mcpdoc", "--urls", "Rust:https://github.com/m2ux/llms/blob/main/rust-llms.txt"]}' -s local
+claude mcp add-json rust-docs '{"type":"stdio","command":"uvx","args":["--from", "mcpdoc", "mcpdoc", "--urls", "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt"]}' -s local
+```
+
+Since Claude Code doesn't currently support global rules, append the following to your prompts:
+
+```
+<rules>
+for ANY question about Rust, use the rust-docs-mcp server to help answer -- 
++ call list_doc_sources tool to get the available llms.txt file
++ call fetch_docs tool to read it
++ reflect on the urls in llms.txt 
++ reflect on the input question 
++ call fetch_docs on any urls relevant to the question
+</rules>
 ```
 
 #### Command Line Usage
 
-You can also run the server directly from the command line:
+You can also run the server directly from the command line with various options:
 
 ```bash
-# Serve the rust-llms.txt file
+# Basic usage - serve the rust-llms.txt file
+uvx --from mcpdoc mcpdoc --urls "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt"
+
+# With additional options
 uvx --from mcpdoc mcpdoc \
-    --urls "Rust:https://github.com/m2ux/llms/blob/main/rust-llms.txt" \
-    --transport sse \
-    --port 8082 \
-    --host localhost
+    --urls "Rust:https://raw.githubusercontent.com/m2ux/llms/main/rust-llms.txt" \
+    --follow-redirects \
+    --timeout 15
 ```
+
+**Additional Options:**
+* `--follow-redirects`: Follow HTTP redirects (defaults to False)
+* `--timeout SECONDS`: HTTP request timeout in seconds (defaults to 10.0)
 
 ---
 
