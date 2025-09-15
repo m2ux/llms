@@ -13,7 +13,7 @@ The `llms.txt` format is a standardized approach for providing LLM-friendly docu
 
 ## rust-llms.txt
 
-The `rust-llms.txt` file provides comprehensive context for writing idiomatic Rust code.
+The [rust-llms.txt](rust-llms.txt) file provides comprehensive context for writing idiomatic Rust code.
 
 ### Purpose
 
