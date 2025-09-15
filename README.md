@@ -1,6 +1,6 @@
 # LLM Context Files
 
-This directory contains structured context files designed to help Large Language Models (LLMs) understand and work with specific programming languages and frameworks.
+This project contains structured context files designed to help Large Language Models (LLMs) understand and work with specific programming languages and frameworks.
 
 ## About llms.txt Files
 
