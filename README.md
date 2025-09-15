@@ -28,31 +28,11 @@ This file helps LLMs understand and generate:
 
 The file organizes Rust learning resources into several categories:
 
-#### Core Learning Resources
-- Official Rust documentation (The Book, Rustonomicon, etc.)
-- Essential tools (clippy, blessed.rs, cheats.rs)
-- Design patterns and API guidelines
-
-#### Articles and Guides
-- 37+ carefully selected articles covering idiomatic Rust patterns
-- String handling, error management, and conversion techniques
-- Advanced topics like state machines and parallel programming
-- Historical perspective from 2015-2023 of Rust evolution
-
-#### Interactive Learning
-- 10 hands-on workshops and coding exercises
-- Project-based learning (JIRA clone, text editor, etc.)
-- University courses and professional training materials
-
-#### Books and In-Depth Guides
-- 9 comprehensive books for all skill levels
-- From beginner-friendly guides to advanced systems programming
-- Specialized topics: CLI apps, web development, embedded systems
-
-#### Community Resources
-- Forum discussions on common patterns and trade-offs
-- Real-world code examples and repositories
-- Conference talks from Rust experts
+- Core Learning Resources
+- Articles and Guides
+- Interactive Learning
+- Books and In-Depth Guides
+- Community Resources
 
 ### Source
 
